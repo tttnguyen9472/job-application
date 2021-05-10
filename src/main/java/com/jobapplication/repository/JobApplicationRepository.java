@@ -1,0 +1,4 @@
+package com.jobapplication.repository;
+
+public interface JobApplicationRepository {
+}
