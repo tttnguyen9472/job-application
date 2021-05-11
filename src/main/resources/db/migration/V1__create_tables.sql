@@ -8,3 +8,10 @@ CREATE TABLE Jobs.job_application
     offer           bit,
     primary key (company_name, job_title)
 );
+CREATE TABLE Jobs.[user]
+(
+    id         bigint       not null,
+    username   varchar(30) not null,
+    password   varchar(30),
+    primary key (id)
+);
