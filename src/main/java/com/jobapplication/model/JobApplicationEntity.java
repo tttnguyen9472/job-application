@@ -1,10 +1,10 @@
 package com.jobapplication.model.jobapplication;
 
-import com.jobapplication.model.User;
+import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -13,37 +13,27 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "job_application")
-@IdClass(JobApplicationId.class)
-public class JobApplicationModel {
+@Table(name = "job_application", schema = "Jobs")
+public class JobApplicationEntity {
 
-  @Id
-  private String companyName;
-  @Id
-  private String jobTitle;
+  @EmbeddedId
+  private JobApplicationPk jobApplicationPk;
+  @Column(name = "application_date")
   private Date applicationDate;
+  @Column(name = "application_status")
   private String applicationStatus;
+  @Column(name = "salary")
   private Long salary;
+  @Column(name = "offer")
   private Boolean offer;
 
-  @ManyToOne(targetEntity = User.class)
-  @JoinColumn(name = "user_id")
-  private User user;
 
-  public String getCompanyName() {
-    return companyName;
+  public JobApplicationPk getJobApplicationPk() {
+    return jobApplicationPk;
   }
 
-  public void setCompanyName(String companyName) {
-    this.companyName = companyName;
-  }
-
-  public String getJobTitle() {
-    return jobTitle;
-  }
-
-  public void setJobTitle(String jobTitle) {
-    this.jobTitle = jobTitle;
+  public void setJobApplicationPk(JobApplicationPk jobApplicationPk) {
+    this.jobApplicationPk = jobApplicationPk;
   }
 
   public Date getApplicationDate() {

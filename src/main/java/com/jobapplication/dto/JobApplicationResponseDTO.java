@@ -1,11 +1,9 @@
 package com.jobapplication.dto;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
-public class JobApplicationResponseDTO {
+public class JobApplicationResponseDTO implements Serializable {
 
   private String companyName;
   private String jobTitle;
@@ -13,6 +11,9 @@ public class JobApplicationResponseDTO {
   private String applicationStatus;
   private Long salary;
   private Boolean offer;
+
+  public JobApplicationResponseDTO() {
+  }
 
   public JobApplicationResponseDTO(String companyName, String jobTitle, Date applicationDate,
                                    String applicationStatus, Long salary, Boolean offer) {
@@ -70,5 +71,17 @@ public class JobApplicationResponseDTO {
 
   public void setOffer(Boolean offer) {
     this.offer = offer;
+  }
+
+  @Override
+  public String toString() {
+    return "JobApplicationResponseDTO{" +
+        "companyName='" + companyName + '\'' +
+        ", jobTitle='" + jobTitle + '\'' +
+        ", applicationDate=" + applicationDate +
+        ", applicationStatus='" + applicationStatus + '\'' +
+        ", salary=" + salary +
+        ", offer=" + offer +
+        '}';
   }
 }
