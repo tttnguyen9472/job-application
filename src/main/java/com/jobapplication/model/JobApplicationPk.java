@@ -1,4 +1,4 @@
-package com.jobapplication.model.jobapplication;
+package com.jobapplication.model;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;

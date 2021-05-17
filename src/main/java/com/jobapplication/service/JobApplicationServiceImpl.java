@@ -1,8 +1,8 @@
 package com.jobapplication.service;
 
 import com.jobapplication.dto.JobApplicationResponseDTO;
-import com.jobapplication.model.jobapplication.JobApplicationEntity;
-import com.jobapplication.model.jobapplication.JobApplicationMapper;
+import com.jobapplication.model.JobApplicationEntity;
+import com.jobapplication.model.JobApplicationMapper;
 import com.jobapplication.repository.JobApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

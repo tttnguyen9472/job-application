@@ -1,8 +1,8 @@
 package com.jobapplication.repository;
 
 
-import com.jobapplication.model.jobapplication.JobApplicationEntity;
-import com.jobapplication.model.jobapplication.JobApplicationPk;
+import com.jobapplication.model.JobApplicationEntity;
+import com.jobapplication.model.JobApplicationPk;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

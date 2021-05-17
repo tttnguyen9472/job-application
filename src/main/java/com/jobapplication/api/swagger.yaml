@@ -26,16 +26,21 @@ schemes:
 - "https"
 - "http"
 paths:
-  /api/job_applications:
+  /api/job_application:
     get:
       tags:
-      - "pet"
+      - "job_application"
       summary: "Get all job applications"
       description: "Every job applications is listed at this end"
-      operationId: "findPetsByStatus"
+      operationId: "getAllJobApplications"
       produces:
       - "application/xml"
       - "application/json"
+      parameters:
+      - name: "token"
+        in: "header"
+        required: false
+        type: "string"
       responses:
         "200":
           description: "successful operation"
@@ -49,7 +54,198 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-  
+    post:
+      tags:
+      - "job_application"
+      summary: "Create a job applications"
+      description: "A user is able to create a job application."
+      operationId: "createAJobApplication"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Job application object needs to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/job_application"
+      responses:
+        "201":
+          description: "Thank you! Your job application is submitted!"
+          
+        "400":
+          description: "Invalid status value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+    put:
+      tags:
+      - "job_application"
+      summary: "Updates a job applications"
+      description: "A user is able to edit a job application from his/her profile."
+      operationId: "updateAJobApplication"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "token"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/job_application"
+        "400":
+          description: "Invalid status value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/job_application/{id}:
+    delete:
+      tags:
+      - "job_application"
+      summary: "Deletes a job application"
+      description: ""
+      operationId: "deleteAJobApplication"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "token"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "Job Application id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Job Application not found"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/user:
+    post:
+      tags:
+      - "user"
+      summary: "Register a user."
+      description: "You need to fill the required fields to create your user."
+      operationId: "register"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object needs to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/user"
+      responses:
+        "201":
+          description: "Your registration is successful!"
+        "400":
+          description: "Invalid status value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+    put:
+      tags:
+      - "user"
+      summary: "Updates a user"
+      description: "A user is able to edit its information from his/her profile."
+      operationId: "updateAUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "token"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "User is updated"
+        "400":
+          description: "Invalid status value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/user/login:
+    post:
+      tags:
+      - "user"
+      summary: "Login the user to the application"
+      description: "You need to login with your username and password to use the application"
+      operationId: "login"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object is required to login."
+        required: true
+        schema:
+          $ref: "#/definitions/user"
+      responses:
+        "200":
+          description: "You're logged in!"
+        "400":
+          description: "Invalid status value"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /api/user/{id}:
+    delete:
+      tags:
+      - "user"
+      summary: "Deletes a user"
+      description: ""
+      operationId: "deleteAUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "token"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "User id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "User not found"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
 securityDefinitions:
   petstore_auth:
     type: "oauth2"
@@ -90,7 +286,16 @@ definitions:
         default: false
     xml:
       name: "Order"
-
+  user:
+    type: "object"
+    properties:
+      id: 
+        type: "integer"
+        format: "int64"
+      username: 
+        type: "string"
+      password: 
+        type: "string"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

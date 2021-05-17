@@ -1,4 +1,4 @@
-package com.jobapplication.model.jobapplication;
+package com.jobapplication.model;
 
 import com.jobapplication.dto.JobApplicationResponseDTO;
 
