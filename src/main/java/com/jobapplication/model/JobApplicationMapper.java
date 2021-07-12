@@ -22,5 +22,6 @@ public class JobApplicationMapper {
       return dto;
     }
 
+//    TODO objectMapper, modelMapper
 
 }

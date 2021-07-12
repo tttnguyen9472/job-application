@@ -9,22 +9,30 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "job_application", schema = "Jobs")
+@Table(name = "job_applications", schema = "Jobs")
 public class JobApplicationEntity {
 
   @EmbeddedId
   private JobApplicationPk jobApplicationPk;
+
   @Column(name = "application_date")
   private Date applicationDate;
+
   @Column(name = "application_status")
   private String applicationStatus;
+
   @Column(name = "salary")
   private Long salary;
+
   @Column(name = "offer")
   @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean offer;
 
   public JobApplicationEntity() {
+  }
+
+  public JobApplicationEntity(JobApplicationPk jobApplicationPk) {
+    this.jobApplicationPk = jobApplicationPk;
   }
 
   public JobApplicationPk getJobApplicationPk() {

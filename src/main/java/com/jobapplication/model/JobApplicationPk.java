@@ -1,5 +1,6 @@
 package com.jobapplication.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,7 +8,10 @@ import java.util.Objects;
 @Embeddable
 public class JobApplicationPk implements Serializable {
 
+  @Column(name = "company_names")
   private String companyName;
+
+  @Column(name = "job_titles")
   private String jobTitle;
 
   public JobApplicationPk() {
@@ -49,5 +53,13 @@ public class JobApplicationPk implements Serializable {
 
   public void setJobTitle(String jobTitle) {
     this.jobTitle = jobTitle;
+  }
+
+  @Override
+  public String toString() {
+    return "JobApplicationPk{" +
+        "companyName='" + companyName + '\'' +
+        ", jobTitle='" + jobTitle + '\'' +
+        '}';
   }
 }

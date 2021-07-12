@@ -95,6 +95,7 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -115,6 +116,8 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+=======
+>>>>>>> 17ff47c3b9fca5f7600933b1b1ef535e1053dd48
     </dependencies>
 
     <build>

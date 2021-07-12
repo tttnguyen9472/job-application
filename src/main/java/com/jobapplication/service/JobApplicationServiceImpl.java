@@ -14,10 +14,13 @@ import java.util.List;
 public class JobApplicationServiceImpl implements JobApplicationService {
 
   private final JobApplicationRepository jobApplicationRepository;
+  private JobApplicationMapper jobApplicationMapper;
 
   @Autowired
-  public JobApplicationServiceImpl(JobApplicationRepository jobApplicationRepository) {
+  public JobApplicationServiceImpl(JobApplicationRepository jobApplicationRepository,
+                                   JobApplicationMapper jobApplicationMapper) {
     this.jobApplicationRepository = jobApplicationRepository;
+    this.jobApplicationMapper = jobApplicationMapper;
   }
 
   @Override
@@ -25,7 +28,7 @@ public class JobApplicationServiceImpl implements JobApplicationService {
     List<JobApplicationEntity> jobApplicationList = jobApplicationRepository.findAll();
     List<JobApplicationResponseDTO> jobApplicationResponseDTOList = new ArrayList<>();
     for (JobApplicationEntity jobApplicationEntity : jobApplicationList) {
-      jobApplicationResponseDTOList.add(new JobApplicationMapper().toDto(jobApplicationEntity));
+      jobApplicationResponseDTOList.add(jobApplicationMapper.toDto(jobApplicationEntity));
     }
     return jobApplicationResponseDTOList;
   }
