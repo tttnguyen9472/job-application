@@ -1,5 +1,7 @@
 package com.jobapplication.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -19,8 +21,11 @@ public class JobApplicationEntity {
   @Column(name = "salary")
   private Long salary;
   @Column(name = "offer")
+  @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean offer;
 
+  public JobApplicationEntity() {
+  }
 
   public JobApplicationPk getJobApplicationPk() {
     return jobApplicationPk;

@@ -1,5 +1,9 @@
 package com.jobapplication.dto;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -75,13 +79,29 @@ public class JobApplicationResponseDTO implements Serializable {
 
   @Override
   public String toString() {
-    return "JobApplicationResponseDTO{" +
-        "companyName='" + companyName + '\'' +
-        ", jobTitle='" + jobTitle + '\'' +
-        ", applicationDate=" + applicationDate +
-        ", applicationStatus='" + applicationStatus + '\'' +
-        ", salary=" + salary +
-        ", offer=" + offer +
-        '}';
+    return new ToStringBuilder(this)
+            .append("companyName", companyName)
+            .append("jobTitle", jobTitle)
+            .append("applicationDate", applicationDate)
+            .append("applicationStatus", applicationStatus)
+            .append("salary", salary)
+            .append("offer", offer)
+            .toString();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass()) return false;
+
+    JobApplicationResponseDTO that = (JobApplicationResponseDTO) o;
+
+    return new EqualsBuilder().append(companyName, that.companyName).append(jobTitle, that.jobTitle).append(applicationDate, that.applicationDate).append(applicationStatus, that.applicationStatus).append(salary, that.salary).append(offer, that.offer).isEquals();
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(17, 37).append(companyName).append(jobTitle).append(applicationDate).append(applicationStatus).append(salary).append(offer).toHashCode();
   }
 }

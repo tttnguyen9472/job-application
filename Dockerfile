@@ -1,4 +1,4 @@
-FROM microsoft/mssql-server-linux:latest
+FROM mcr.microsoft.com/mssql/server:2019-latest
 
 # Create work directory
 RUN mkdir -p /usr/work
@@ -8,7 +8,8 @@ WORKDIR /usr/work
 COPY . /usr/work/
 
 # Grant permissions for the import-data script to be executable
-RUN chmod +x /usr/work/import-data.sh
+USER root
+RUN chmod u+x /usr/work/import-data.sh
 
 EXPOSE 1433
 
