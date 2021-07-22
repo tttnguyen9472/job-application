@@ -3,7 +3,7 @@ package com.jobapplication.repository;
 import com.jobapplication.JobApplication;
 import com.jobapplication.model.JobApplicationEntity;
 import javafx.application.Application;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Sql({"db/migration/init_tests.sql", "db/migration/V1__create_tables.sql", "db/migration/add_job_applications.sql"})
+@Sql({"db/migration/init_tests.sql"})
 public class JobApplicationRepositoryTest {
 
     @Autowired
